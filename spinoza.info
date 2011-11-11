@@ -1,0 +1,30 @@
+name = Spinoza
+description = Base front-end theme based on semantic.gs.
+core = 7.x
+engine = phptemplate
+
+; Regions
+;
+; We rely on the default regions
+
+; Settings
+;
+settings[spinoza_use_less_js] = no-less
+settings[spinoza_less_js_cdn_url] = http://cdnjs.cloudflare.com/ajax/libs/less.js/1.1.3/less-1.1.3.min.js
+settings[spinoza_less_js_theme_path] = /semantic.gs/js/less-1.1.3.min.js
+
+; Stylesheets
+;
+; The only default stylesheet (so far as the info file is concerned) is the
+; reset stylesheet
+stylesheets[screen][] = reset.css
+
+; Scripts
+;
+; There are no default scripts provided by the base theme
+
+; Support shortcut module links
+settings[shortcut_module_link] = 1
+
+version = "7.x-1.0-alpha1"
+core = "7.x"
