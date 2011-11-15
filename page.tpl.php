@@ -66,6 +66,63 @@
  * @see template_process()
  */
 ?>
+<hr />
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="#">Project name</a>
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="hero-unit">
+        <h1>Hello, world!</h1>
+        <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+        <p><a class="btn primary large">Learn more &raquo;</a></p>
+      </div>
+
+      <?php print $messages; ?>
+
+      <div class="row">
+        <?php if ($page['sidebar_first']): ?>
+        <div class="span-one-third">
+          <?php print render($page['sidebar_first']); ?>
+        </div>
+        <?php endif; ?>
+        
+        <div class="span-one-third">
+          <?php print render($title_prefix); ?>
+          <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+          <?php print render($title_suffix); ?>
+          <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
+          <?php print render($page['help']); ?>
+          <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+          <?php print render($page['content']); ?>
+          <?php print $feed_icons; ?>      
+        </div>
+       
+        <?php if ($page['sidebar_second']): ?>
+        <div class="span-one-third">
+          <?php print render($page['sidebar_second']); ?>
+        </div>
+        <?php endif; ?>
+      </div>
+
+      <footer>
+        <?php print render($page['footer']); ?>
+      </footer>
+    </div> <!-- /container -->
+
+</hr />
+
+
 
   <div id="page-wrapper"><div id="page">
 

@@ -6,11 +6,22 @@ engine = phptemplate
 
 ; Regions
 ;
-; We rely on the default regions
-
+; We rely on the default regions, but we can set the main content area up to use
+; any number of 'sidebars' by adding their names below, their default grid-width
+; to the settings array, and by adding them to the page.tpl.php file. 
+;
+; Note that if you define the regions here (or in a child theme), you will need
+; to redefine ALL of Drupal's default regions.
+;regions[content] = Content
+;regions[sidebar_first] = First Sidebar
+;regions[sidebar_second] = Second Sidebar
+;regions[sidebar_third] = Third Sidebar
 
 ; Settings
 ;
+settings[bootstrap_content_size] = 8
+settings[bootstrap_sidebar_first_size] = 4
+settings[bootstrap_sidebar_second_size] = 4
 
 
 ; Scripts
