@@ -1,0 +1,45 @@
+@import 'semantic.gs/stylesheets/reset.css';
+body {
+  width: 100%;
+  *zoom: 1;
+}
+body:before, body:after {
+  content: "";
+  display: table;
+}
+body:after {
+  clear: both;
+}
+body {
+  color: #f90;
+}
+div.center {
+  width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+header#top {
+  display: inline;
+  float: left;
+  width: 940px;
+  margin: 0 10px;
+  margin-bottom: 1em;
+}
+#main-column {
+  display: inline;
+  float: left;
+  width: 460px;
+  margin: 0 10px;
+}
+#sidebar-1 {
+  display: inline;
+  float: left;
+  width: 220px;
+  margin: 0 10px;
+}
+#sidebar-2 {
+  display: inline;
+  float: left;
+  width: 220px;
+  margin: 0 10px;
+}
