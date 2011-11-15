@@ -21,7 +21,7 @@ engine = phptemplate
 ; Stylesheets
 ;
 ; Bootstrap defaults:
-scripts[screen][] = bootstrap/bootstrap.min.css
+stylesheets[screen][] = bootstrap/bootstrap.min.css
 
 
 ; Support shortcut module links
