@@ -12,7 +12,7 @@
 function spinoza_form_system_theme_settings_alter(&$form, &$form_state) {
   // Less css fieldset
   $form['spinoza_less_js'] = array(
-    '#collapsed' => TRUE,
+    '#collapsed' => FALSE,
     '#collapsible' => TRUE,
     '#description' => t('Contains settings related to the use of Less css in this theme'),
     '#title' => t('Less css settings'),

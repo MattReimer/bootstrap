@@ -46,7 +46,9 @@
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
+  <link rel="stylesheet" type="text/css" href="<?php print base_path() . drupal_get_path('theme', 'spinoza') . '/style.css'; ?>" />
   <?php print $scripts; ?>
+  <!--[if lt IE 9]><script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <div id="skip-link">

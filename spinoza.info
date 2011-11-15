@@ -17,7 +17,7 @@ settings[spinoza_less_js_theme_path] = /semantic.gs/js/less-1.1.3.min.js
 ;
 ; The only default stylesheet (so far as the info file is concerned) is the
 ; reset stylesheet
-stylesheets[screen][] = reset.css
+; 
 
 ; Scripts
 ;
