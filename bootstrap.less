@@ -1,2 +1,21 @@
 // Import bootstrap defaults:
 @import "bootstrap/lib/bootstrap.less";
+
+
+// Handle admin-menu overlap problem
+//
+// @todo:
+//    Handle Toolbar too!
+.logged-in > .topbar {
+  // Temp fix
+  margin-top: 27px;
+}
+
+.logged-in > .topbar,
+.logged-in > .container {
+  // What to do here?
+}
+
+
+// Override Drupal styles for div.message:
+@import "less/system.messages.less";

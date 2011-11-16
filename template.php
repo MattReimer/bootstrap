@@ -6,6 +6,10 @@
  */
 
 
+// Include required functions:
+require_once('includes.php');
+
+
 /**
  * 
  */
@@ -26,6 +30,25 @@ function bootstrap_preprocess_html(&$variables, $hook) {
  * Implements template_preprocess_page();
  */
 function bootstrap_preprocess_page(&$variables, $hook) {
+  // Retrieve and make available variables for use in column classes--if there
+  // are any sidebars:
+  $sidebar_regions = _bootstrap_get_sidebar_regions();
+  // Count the results:
+  $sidebar_count = count($sidebar_regions);
+  // Special circumstances may apply if there are exactly two sidebars:
+  $equal_columns = ($sidebar_count == 2 && theme_get_setting('bootstrap_one_third'));
+  if ($sidebar_count > 0) {
+    // Loop through them, and provide a variable for each sidebar's width. If
+    // there are exactly two columns, we do something a bit different inside
+    // the loop:
+    foreach ($sidebar_regions as $key => $name) {
+      $variables[sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, $key)] = !$equal_columns ? theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, $key)) : '-one-third';
+    }
+    // We also have to do the same for the content region, but that should be 
+    // more straightforward as that region MUST exist:
+    $variables[sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, 'content')] = !$equal_columns ? theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, 'content')) : '-one-third';
+  }
+  
   drupal_set_message('This is a status message', 'status');
   drupal_set_message('This is a warning message', 'warning');
   drupal_set_message('This is an error message', 'error');
