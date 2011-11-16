@@ -32,7 +32,7 @@ settings[bootstrap_sidebar_second_size] = 4
 ; Stylesheets
 ;
 ; Bootstrap defaults:
-stylesheets[screen][] = bootstrap/bootstrap.min.css
+stylesheets[screen][] = bootstrap.css
 
 
 ; Support shortcut module links
