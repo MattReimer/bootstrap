@@ -1,0 +1,21 @@
+// Also includes fixes for admin-menu issues:
+//
+// Force bootstrap to respect the line height of admin-menu items:
+#admin-menu li {
+  line-height: 12px;
+}
+
+// Handle admin-menu-topbar conflict:
+.admin-menu > .topbar {
+  // Do not allow top bar to remain fixed when admin-menu is present:
+  position: static;
+}
+
+.admin-menu .container {
+  margin-top: @baseline;
+}
+
+// Tabs
+.tabs ul.tabs {
+  .tabs();
+}
