@@ -11,6 +11,27 @@ require_once('includes.php');
 
 
 /**
+ * Implements theme_breadcrumb().
+ */
+function bootstrap_breadcrumb($variables) {
+  // Convenience variable:
+  $breadcrumb = $variables['breadcrumb'];
+  // If we have any breadcrumbs:
+  if (!empty($breadcrumb)) {
+    // Convert 'em to a string:
+    $breadcrumbs = implode(' <span class="divider">/</span> ', $breadcrumb);
+    // Build a heading--here at least, we're following the D7 convention of
+    // accompanying menus with invisible headings to aid in text-only navigation:
+    $heading = t('You are here');
+    // Pattern for output:
+    $output_pattern = '<h2 class="element-invisible">%s</h2><ul class="breadcrumb">%s</ul>';
+    // Return the markup:
+    return sprintf($output_pattern, $heading, $breadcrumbs);
+  }
+} // bootstrap_breadcrumb()
+
+
+/**
  * 
  */
 function bootstrap_html_head_alter(&$head_elements) {

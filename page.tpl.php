@@ -66,28 +66,29 @@
  * @see template_process()
  */
 ?>
-<!--<div class="topbar">
+<div class="topbar">
   <div class="fill">
     <div class="container">
-      <a class="brand" href="#">Project name</a>
-      <ul class="nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <a class="brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
+      <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('nav')))); ?>
     </div>
   </div>
-</div>-->
+</div>
 
 <div class="container">
-  
-  <!--<div class="hero-unit">
+  <?php if ($is_front): ?>
+  <div class="hero-unit">
     <h1>Hello, world!</h1>
     <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
     <p><a class="btn primary large">Learn more &raquo;</a></p>
-  </div>-->
+  </div>
+  <?php endif; ?>
 
   <?php print $messages; ?>
+  
+  <?php if ($breadcrumb): ?>
+    <?php print $breadcrumb; ?>
+  <?php endif; ?>
 
   <div class="row">
     <?php if ($page['sidebar_first']): ?>
