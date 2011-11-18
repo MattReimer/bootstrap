@@ -1,34 +1,18 @@
-/*
-div.messages {
-  .alert-message.block-message();
-  margin-bottom: @baseline;
-}
-
-  div.messages ul {
-    margin-bottom: 0;
-  }
-
-div.messages.error {
-  .block-message.error();
-}
-
-div.messages.status {
-  .block-message.success();
-}
-*/
-
 div.messages {
   .alert-message.block-message;
 }
 
+div.messages.warning {
+  .alert-message.block-message;
+  .warning;
+}
+
 div.messages.error {
-  .alert-message.error;
+  .alert-message.block-message;
+  .error;
 }
 
 div.messages.status {
-  .alert-message.success;
-}
-
-.div {
-
+  .alert-message.block-message;
+  .success;
 }
