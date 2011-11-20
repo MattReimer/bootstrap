@@ -8,6 +8,8 @@
 
 // Include required functions:
 require_once('includes.php');
+require_once('lib/theme-includes/form.inc.php');
+require_once('lib/theme-includes/webform.inc.php');
 
 
 /**
@@ -74,3 +76,42 @@ function bootstrap_preprocess_page(&$variables, $hook) {
   drupal_set_message('This is a warning message', 'warning');
   drupal_set_message('This is an error message', 'error');
 } // bootstrap_preprocess_page()
+
+
+/**
+ * Implements theme_status_messages().
+ *
+ * @todo:
+ *  -- clean up this mess of concatenation
+ */
+function bootstrap_status_messages(&$variables) {
+  $display = $variables['display'];
+  $output = '';
+
+  $status_heading = array(
+    'status' => t('Status message'),
+    'error' => t('Error message'),
+    'warning' => t('Warning message'),
+  );
+  foreach (drupal_get_messages($display) as $type => $messages) {
+    $class = $type != 'status' ? $type : 'success';
+    $output .= "<div class=\"alert-message block-message $class\">\n<a class=\"close\" href=\"#\">&#215;</a>";
+    if (!empty($status_heading[$type])) {
+      $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
+    }
+    if (count($messages) > 1) {
+      $output .= " <ul>\n";
+      foreach ($messages as $message) {
+        $output .= '  <li>' . $message . "</li>\n";
+      }
+      $output .= " </ul>\n";
+    }
+    else {
+      $output .= $messages[0];
+    }
+    $output .= "</div>\n";
+  }
+  drupal_add_js(array('bootstrap' => array('alertMessage' => TRUE)), 'setting');
+  drupal_add_js(drupal_get_path('theme', 'bootstrap') . '/' . 'Drupal.behaviors.bootstrapAlertMessages.min.js');
+  return $output;
+} // bootstrap_status_messages()

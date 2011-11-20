@@ -1,0 +1,87 @@
+// Map Bootstrap's .help-block to Drupal's .description:
+.description {
+  .help-block;
+}
+
+// Provide an option for those who find Bootstrap's light grey a bit hard to
+// read:
+.description:hover,
+.description:focus {
+  color: @baseColor;
+}
+
+// Map Bootstrap's .actions to Drupal's .form-actions:
+.form-actions {
+  .actions;
+}
+
+// Map Bootstrap's .btn and .btn.primary to Drupal's .form-submit; also provide
+// small margins for when there is no space in the markup; additionally, preserve
+// the button color on hover:
+.form-submit {
+  .btn;
+  .btn.primary;
+  margin-right: .333em;
+  &:last-child {
+    margin-right: 0;
+  }
+  &:hover {
+    color: @white;
+  }
+}
+
+// Map Bootstrap's .clearfix to Drupal's .form-item, plus add back Bootstrap's
+// margin:
+form div div.form-item {
+  .clearfix;
+  margin-bottom: @baseline;
+}
+
+  form div div.form-item.form-type-checkbox {
+    margin-bottom: 0;
+  }
+  
+    .form-item .form-item.form-type-checkbox label.option {
+      display: inline;
+      float: none;
+      margin: 0;
+      padding: 0;
+      width: auto;
+    }
+
+    .form-item .form-item.form-type-checkbox .input {
+      display: inline;
+      margin-left: 0;
+    }
+
+.form-checkboxes {
+  .inputs-list;
+  .form-item {
+    //.inputs-list li;
+    display: block;
+    padding: 0;
+    width: 100%;
+  }
+  &:first-child {
+    padding-top: 6px;
+  }
+  .form-item + .form-item {
+    padding-top: 2px;
+  }
+  margin-left: 20px;
+}
+
+  // Map .inputs-list li to .form-checkboxes .form-item--we can't use descendent
+  // selectors in *.less, so we just have to use the styles directly:
+  .form-checkboxes .form-item {
+    
+  }
+
+
+
+/*
+.form-type-checkbox input {
+  .inputs-list;
+  input[type="checkbox"];
+}
+*/
