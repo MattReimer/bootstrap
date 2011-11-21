@@ -12,14 +12,37 @@ require_once('includes.php');
 
 /**
  * Implements hook_form_system_theme_settings_alter().
+ *
+ * @todo
+ *    -- provide validation handler to verify the sum of column widths
+ *    -- provide setting for configuring the number of columns in the layout
+ *    -- use jquery ui sliders for settings
+ *    -- provide a warning that the sidebar width fields should NOT be used
+ *       to hide columns but rather that those columns should be removed by a
+ *       sub-theme (performance!) Possibly, make a submit handler set a warning
+ *       if it finds any zero values, or possibly set a minimum width directly
+ *       in code.
  */
 function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
   // Retrieve information about the available sidebar regions in this theme:
   $sidebar_regions = _bootstrap_get_sidebar_regions();
   // Count 'em:
   $sidebar_count = count($sidebar_regions);
-  
+  // Get the theme path:
+  $path_to_bootstrap = drupal_get_path('theme', 'bootstrap');
+
   // Build our part of the form:
+  //
+  // Attach required css:
+  $form['#attached']['css'] = array(
+    'misc/ui/jquery.ui.slider.css',
+  );
+  // Attach required js:
+  $form['#attached']['js'] = array(
+    'misc/ui/jquery.ui.slider.min.js',
+    $path_to_bootstrap . '/lib/js/Drupal.behaviors.bootstrapSettings.js',
+  );
+  
   $form['bootstrap_layout_settings'] = array(
     '#collapsed' => FALSE,
     '#collapsible' => TRUE,

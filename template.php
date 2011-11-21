@@ -34,23 +34,10 @@ function bootstrap_breadcrumb($variables) {
 
 
 /**
- * 
- */
-function bootstrap_html_head_alter(&$head_elements) {
-  
-} // bootstrap_html_head_alter()
-
-
-/**
- * Implements template_preprocess_html();
- */
-function bootstrap_preprocess_html(&$variables, $hook) {
-  
-} // bootstrap_preprocess_html()
-
-
-/**
- * Implements template_preprocess_page();
+ * Implements template_preprocess_page().
+ *
+ * @todo
+ *    -- review for quality and comment code from approximately 54-79
  */
 function bootstrap_preprocess_page(&$variables, $hook) {
   // Retrieve and make available variables for use in column classes--if there
@@ -65,16 +52,32 @@ function bootstrap_preprocess_page(&$variables, $hook) {
     // there are exactly two columns, we do something a bit different inside
     // the loop:
     foreach ($sidebar_regions as $key => $name) {
-      $variables[sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, $key)] = !$equal_columns ? theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, $key)) : '-one-third';
+      $variable_name = sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, $key);
+      $column_width_setting = theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, $key));
+      // If our current column width value, whatever column this is, is not zero:
+      if ($column_width_setting != 0) {
+        $variables[$variable_name] = !$equal_columns ? $column_width_setting : '-one-third';
+        if (is_numeric($variables[$variable_name])) {
+          $filled_columns += (int) $column_width_setting;
+        }
+      }
+      // But if it IS zero, we have to check if the variable exists and unset it--
+      // the sidebar could contain content. Moreover, we MUST also keep track of
+      // how many columns we expected to fill with the now-missing element(s):
+      elseif (isset($variables['page'][$key])) {
+        unset($variables['page'][$key]);
+      }
     }
     // We also have to do the same for the content region, but that should be 
     // more straightforward as that region MUST exist:
-    $variables[sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, 'content')] = !$equal_columns ? theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, 'content')) : '-one-third';
+    $remaining_space = BOOTSTRAP_GRID_COLUMNS - $filled_columns;
+    $content_width_setting = !$equal_columns ?  theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, 'content')) : '-one-third';
+    
+    $content_width = is_numeric($content_width_setting) && $remaining_space > $content_width_setting ? $remaining_space : $content_width_setting;
+    
+    $variables[sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, 'content')] = $content_width;
+    //!$equal_columns ?  theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, 'content')) : '-one-third';
   }
-  
-  drupal_set_message('This is a status message', 'status');
-  drupal_set_message('This is a warning message', 'warning');
-  drupal_set_message('This is an error message', 'error');
 } // bootstrap_preprocess_page()
 
 
@@ -82,7 +85,8 @@ function bootstrap_preprocess_page(&$variables, $hook) {
  * Implements theme_status_messages().
  *
  * @todo:
- *  -- clean up this mess of concatenation
+ *    -- clean up this mess of concatenation...hard to believe the core contains
+ *       this kind of thing.
  */
 function bootstrap_status_messages(&$variables) {
   $display = $variables['display'];
@@ -112,6 +116,6 @@ function bootstrap_status_messages(&$variables) {
     $output .= "</div>\n";
   }
   drupal_add_js(array('bootstrap' => array('alertMessage' => TRUE)), 'setting');
-  drupal_add_js(drupal_get_path('theme', 'bootstrap') . '/' . 'Drupal.behaviors.bootstrapAlertMessages.min.js');
+  drupal_add_js(drupal_get_path('theme', 'bootstrap') . '/lib/js/' . 'Drupal.behaviors.bootstrapAlertMessages.min.js');
   return $output;
 } // bootstrap_status_messages()

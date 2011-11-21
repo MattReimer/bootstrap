@@ -97,7 +97,7 @@
     </div>
     <?php endif; ?>
     
-    <div class="span<?php print 16 - ($sidebar_first_size + 0 /*$sidebar_second_size*/); //print $content_size; ?>">
+    <div class="span<?php print $content_size; ?>">
       <?php print render($title_prefix); ?>
       <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
       <?php print render($title_suffix); ?>
@@ -108,13 +108,12 @@
       <?php print $feed_icons; ?>      
     </div>
    
-   <!--
     <?php if ($page['sidebar_second']): ?>
     <div class="span<?php print $sidebar_second_size; ?>">
       <?php print render($page['sidebar_second']); ?>
     </div>
     <?php endif; ?>
-    -->
+
   </div>
 
   <footer>
