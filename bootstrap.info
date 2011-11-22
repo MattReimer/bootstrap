@@ -27,6 +27,7 @@ regions[sidebar_second] = Second Sidebar
 settings[bootstrap_content_size] = 8
 settings[bootstrap_sidebar_first_size] = 4
 settings[bootstrap_sidebar_second_size] = 4
+settings[bootstrap_row_post_content_divisions] = 3
 
 
 ; Scripts

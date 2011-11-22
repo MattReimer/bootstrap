@@ -53,7 +53,7 @@ function bootstrap_preprocess_page(&$variables, $hook) {
     // the loop:
     foreach ($sidebar_regions as $key => $name) {
       $variable_name = sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, $key);
-      $column_width_setting = theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, $key));
+      $column_width_setting = theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_COLUMN_VARIABLE_PATTERN, $key));
       // If our current column width value, whatever column this is, is not zero:
       if ($column_width_setting != 0) {
         $variables[$variable_name] = !$equal_columns ? $column_width_setting : '-one-third';
@@ -71,7 +71,7 @@ function bootstrap_preprocess_page(&$variables, $hook) {
     // We also have to do the same for the content region, but that should be 
     // more straightforward as that region MUST exist:
     $remaining_space = BOOTSTRAP_GRID_COLUMNS - $filled_columns;
-    $content_width_setting = !$equal_columns ?  theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, 'content')) : '-one-third';
+    $content_width_setting = !$equal_columns ?  theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_COLUMN_VARIABLE_PATTERN, 'content')) : '-one-third';
     
     $content_width = is_numeric($content_width_setting) && $remaining_space > $content_width_setting ? $remaining_space : $content_width_setting;
     

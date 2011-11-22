@@ -8,7 +8,8 @@
  
 
 // Constants
-define('BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN', 'bootstrap_%s_size');
+define('BOOTSTRAP_THEME_SETTINGS_COLUMN_VARIABLE_PATTERN', 'bootstrap_%s_size');
+define('BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN', 'bootstrap_%s_divisions');
 define('BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN', '%s_size');
 define('BOOTSTRAP_GRID_COLUMNS', 16);
 

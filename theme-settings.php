@@ -24,11 +24,14 @@ require_once('includes.php');
  *       in code.
  */
 function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
-  // Retrieve information about the available sidebar regions in this theme:
-  $sidebar_regions = _bootstrap_get_multiple_regions('sidebar_');
-  $row_regions = '';
+  // Retrieve information about the available sidebar and row regions in this
+  // theme:
+  $theme_regions = _bootstrap_get_multiple_regions(array('sidebar_', 'row_'));
+  $sidebar_regions = $theme_regions['sidebar_'];
+  $row_regions = $theme_regions['row_'];
   // Count 'em:
   $sidebar_count = count($sidebar_regions);
+  $row_count = count($row_regions);
   // Get the theme path:
   $path_to_bootstrap = drupal_get_path('theme', 'bootstrap');
 
@@ -50,10 +53,12 @@ function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title' => t('Bootstrap layout settings'),
     '#type' => 'fieldset',
   );
+  // SIDEBAR SETTINGS
+  //
   // If no sidebar region is defined, we can just forgo display of this fieldset
   // altogether--if there're no sidebars, then the content region is obviously
   // full-width:
-  if ($sidebar_count > 0) {    
+  if ($sidebar_count > 0) {
     // Set up the basic field set:
     $form['bootstrap_layout_settings']['bootstrap_column_sizes'] = array(
       '#collapsed' => TRUE,
@@ -82,7 +87,7 @@ function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
     );
     // Add sidebar settings items:
     foreach ($sidebar_regions as $key => $name) {
-      $variable_name = sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, $key);
+      $variable_name = sprintf(BOOTSTRAP_THEME_SETTINGS_COLUMN_VARIABLE_PATTERN, $key);
       $form['bootstrap_layout_settings']['bootstrap_column_sizes'][$variable_name] = array(
         '#default_value' => theme_get_setting($variable_name),
         '#maxlength' => 2,
@@ -100,5 +105,28 @@ function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
       '#size' => 5,
       '#type' => 'hidden',
     );
+  }
+  // ROW SETTINGS
+  //
+  // As above, if the count of row regions is zero, there's no need for this
+  // fieldset:
+  if ($row_count > 0) {
+    $form['bootstrap_layout_settings']['bootstrap_row_divisions'] = array(
+      '#collapsed' => TRUE,
+      '#collapsible' => TRUE,
+      '#title' => t('Bootstrap row divisions'),
+      '#type' => 'fieldset',
+    );
+    foreach ($row_regions as $key => $name) {
+      $variable_name = sprintf(BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN, $key);
+      $form['bootstrap_layout_settings']['bootstrap_row_divisions'][$variable_name] = array(
+        '#default_value' => theme_get_setting($variable_name),
+        '#description' => t('How many blocks should be shown horizontally in this row?'),
+        '#maxlength' => 2,
+        '#size' => 5,
+        '#title' => t('@name divisions', array('@name' => $name)),
+        '#type' => 'textfield',        
+      );
+    }
   }
 } // bootstrap_form_system_theme_settings_alter()
