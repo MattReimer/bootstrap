@@ -25,7 +25,8 @@ require_once('includes.php');
  */
 function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
   // Retrieve information about the available sidebar regions in this theme:
-  $sidebar_regions = _bootstrap_get_sidebar_regions();
+  $sidebar_regions = _bootstrap_get_multiple_regions('sidebar_');
+  $row_regions = '';
   // Count 'em:
   $sidebar_count = count($sidebar_regions);
   // Get the theme path:

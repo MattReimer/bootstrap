@@ -43,12 +43,11 @@
 ?>
 <div id="<?php print $block_html_id; ?>" class="<?php print $classes; ?> hero-unit"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
-<?php if ($block->subject): ?>
+  <?php if ($block->subject): ?>
   <h1<?php print $title_attributes; ?>><?php print $block->subject ?></h1>
-<?php endif;?>
+  <?php endif;?>
   <?php print render($title_suffix); ?>
-
   <div class="content"<?php print $content_attributes; ?>>
-    <?php print $content ?>
+  <?php print $content ?>
   </div>
 </div>

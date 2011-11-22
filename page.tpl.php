@@ -74,25 +74,20 @@
     </div>
   </div>
 </div>
-
 <div class="container">
   <?php if ($breadcrumb): ?>
   <?php print $breadcrumb; ?>
   <?php endif; ?>
-  
+  <?php print $messages; ?>
   <?php if ($page['highlighted']): ?>
   <?php print render($page['highlighted']); ?>
   <?php endif; ?>
-
-  <?php print $messages; ?>
-
   <div class="row">
     <?php if ($page['sidebar_first']): ?>
     <div class="span<?php print $sidebar_first_size; ?>">
       <?php print render($page['sidebar_first']); ?>
     </div>
-    <?php endif; ?>
-    
+    <?php endif; ?>  
     <div class="span<?php print $content_size; ?>">
       <?php print render($title_prefix); ?>
       <?php if ($title && !$page['highlighted']): ?>
@@ -106,17 +101,15 @@
       <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
       <?php print render($page['content']); ?>
       <?php print $feed_icons; ?>      
-    </div>
-   
+    </div> 
     <?php if ($page['sidebar_second']): ?>
     <div class="span<?php print $sidebar_second_size; ?>">
       <?php print render($page['sidebar_second']); ?>
     </div>
     <?php endif; ?>
-
-  </div>
-
-  <footer>
+  </div><!-- .row -->
+  <?php if ($page['row_post_content']): print render($page['row_post_content']); endif; ?>
+  <footer class="footer">
     <?php print render($page['footer']); ?>
   </footer>
 </div>

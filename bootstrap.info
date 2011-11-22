@@ -10,15 +10,16 @@ engine = phptemplate
 ; any number of 'sidebars' by adding their names below, their default grid-width
 ; to the settings array, and by adding them to the page.tpl.php file. 
 ;
-; Note that if you define the regions here (or in a child theme), you will need
-; to redefine ALL of Drupal's default regions.
-;regions[content] = Content
-;regions[footer] = Footer
-;regions[header] = Header
-;regions[help] = Help
-;regions[highlighted] = Highlighted Region
-;regions[sidebar_first] = First Sidebar
-;regions[sidebar_second] = Second Sidebar
+; Expressly redeclare all of the default Drupal regions so that we can add some
+; of our own (alphabetical by array key):
+regions[content] = Content
+regions[footer] = Footer
+regions[header] = Header
+regions[help] = Help
+regions[highlighted] = Highlighted Region
+regions[row_post_content] = Post-content Row
+regions[sidebar_first] = First Sidebar
+regions[sidebar_second] = Second Sidebar
 
 
 ; Settings
@@ -30,9 +31,6 @@ settings[bootstrap_sidebar_second_size] = 4
 
 ; Scripts
 ;
-; Since the plugin it provides doesn't work (or doesn't work in this context,
-; don't include it):
-;scripts[] = bootstrap/js/bootstrap-alerts.js
 
 
 ; Stylesheets
@@ -44,6 +42,7 @@ stylesheets[all][] = system.messages.css
 stylesheets[all][] = system.menus.css
 stylesheets[all][] = system.theme.css
 stylesheets[all][] = shortcut.css
+; Module stylesheets we'd like to preemptively avoid:
 stylesheets[all][] = webform.css 
 
 

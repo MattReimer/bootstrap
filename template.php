@@ -42,7 +42,7 @@ function bootstrap_breadcrumb($variables) {
 function bootstrap_preprocess_page(&$variables, $hook) {
   // Retrieve and make available variables for use in column classes--if there
   // are any sidebars:
-  $sidebar_regions = _bootstrap_get_sidebar_regions();
+  $sidebar_regions = _bootstrap_get_multiple_regions(array('sidebar_', 'row_'));
   // Count the results:
   $sidebar_count = count($sidebar_regions);
   // Special circumstances may apply if there are exactly two sidebars:
