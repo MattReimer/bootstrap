@@ -76,7 +76,6 @@ function bootstrap_preprocess_page(&$variables, $hook) {
     $content_width = is_numeric($content_width_setting) && $remaining_space > $content_width_setting ? $remaining_space : $content_width_setting;
     
     $variables[sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, 'content')] = $content_width;
-    //!$equal_columns ?  theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_VARIABLE_PATTERN, 'content')) : '-one-third';
   }
 } // bootstrap_preprocess_page()
 

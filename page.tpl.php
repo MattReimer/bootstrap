@@ -76,19 +76,15 @@
 </div>
 
 <div class="container">
-  <?php if ($is_front): ?>
-  <div class="hero-unit">
-    <h1>Hello, world!</h1>
-    <p>Vestibulum id ligula porta felis euismod semper. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
-    <p><a class="btn primary large">Learn more &raquo;</a></p>
-  </div>
+  <?php if ($breadcrumb): ?>
+  <?php print $breadcrumb; ?>
+  <?php endif; ?>
+  
+  <?php if ($page['highlighted']): ?>
+  <?php print render($page['highlighted']); ?>
   <?php endif; ?>
 
   <?php print $messages; ?>
-  
-  <?php if ($breadcrumb): ?>
-    <?php print $breadcrumb; ?>
-  <?php endif; ?>
 
   <div class="row">
     <?php if ($page['sidebar_first']): ?>
@@ -99,7 +95,11 @@
     
     <div class="span<?php print $content_size; ?>">
       <?php print render($title_prefix); ?>
-      <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+      <?php if ($title && !$page['highlighted']): ?>
+      <h1 class="title" id="page-title"><?php print $title; ?></h1>
+      <?php elseif ($title && $page['highlighted']): ?>
+      <h2 class="title" id="page-title"><?php print $title; ?></h2>
+      <?php endif; ?>
       <?php print render($title_suffix); ?>
       <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
       <?php print render($page['help']); ?>

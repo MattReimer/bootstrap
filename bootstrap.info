@@ -13,9 +13,13 @@ engine = phptemplate
 ; Note that if you define the regions here (or in a child theme), you will need
 ; to redefine ALL of Drupal's default regions.
 ;regions[content] = Content
+;regions[footer] = Footer
+;regions[header] = Header
+;regions[help] = Help
+;regions[highlighted] = Highlighted Region
 ;regions[sidebar_first] = First Sidebar
 ;regions[sidebar_second] = Second Sidebar
-;regions[sidebar_third] = Third Sidebar
+
 
 ; Settings
 ;
@@ -35,7 +39,7 @@ settings[bootstrap_sidebar_second_size] = 4
 ;
 ; Bootstrap defaults:
 stylesheets[screen][] = bootstrap.css
-; Stylesheets to be removed (!)
+; System stylesheets we'd like to avoid:
 stylesheets[all][] = system.messages.css
 stylesheets[all][] = system.menus.css
 stylesheets[all][] = system.theme.css
