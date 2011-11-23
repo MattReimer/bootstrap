@@ -5,11 +5,11 @@
  * Provides constants and functions used in both theme-settings.php and
  * template.php.
  */
- 
+
 
 // Constants
 define('BOOTSTRAP_THEME_SETTINGS_COLUMN_VARIABLE_PATTERN', 'bootstrap_%s_size');
-define('BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN', 'bootstrap_%s_divisions');
+define('BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN', 'bootstrap_%s_size');
 define('BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN', '%s_size');
 define('BOOTSTRAP_GRID_COLUMNS', 16);
 
@@ -30,7 +30,7 @@ define('BOOTSTRAP_GRID_COLUMNS', 16);
 function _bootstrap_get_multiple_regions($region_types = array('sidebar_'), $theme_override = NULL) {
   // Find out the current theme--or at least the theme the caller is interested
   // in:
-  $current_theme = $theme_override ? $theme_override : variable_get('theme_default', $theme_override);  
+  $current_theme = $theme_override ? $theme_override : variable_get('theme_default', $theme_override);
   // Retrieve information about the available regions in this theme:
   $regions = system_region_list($current_theme);
   // Go through the regions and find all those regions whose key begins with

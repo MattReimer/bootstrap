@@ -19,7 +19,7 @@
  *      description in the 'inline', 'before' and 'invisible' cases (around line
  *      66), and immediately before the element in the remaining cases (these
  *      may require additional styling);
- * 
+ *
  * The general approach is to modify this function as minimally as possible so
  * as not to interfere with Webform any more than is necessary. Most of the
  * Bootstrap-ization is accomplished in the main lib/less/*.less files.
@@ -41,7 +41,7 @@ function bootstrap_webform_element($variables) {
   );
 
   $element = $variables['element'];
-  
+
   // All elements using this for display only are given the "display" type.
   if (isset($element['#format']) && $element['#format'] == 'html') {
     $type = 'display';
@@ -59,7 +59,7 @@ function bootstrap_webform_element($variables) {
   if (isset($element['#title_display']) && $element['#title_display'] == 'inline') {
     $wrapper_classes[] = 'webform-container-inline';
   }
-  
+
   $output = '<div class="' . implode(' ', $wrapper_classes) . '" id="webform-component-' . $parents . '">' . "\n";
   $required = !empty($element['#required']) ? '<span class="form-required" title="' . t('This field is required.') . '">*</span>' : '';
 
@@ -69,7 +69,7 @@ function bootstrap_webform_element($variables) {
   }
   $prefix = isset($element['#field_prefix']) ? '<span class="field-prefix">' . _webform_filter_xss($element['#field_prefix']) . '</span> ' : '';
   $suffix = isset($element['#field_suffix']) ? ' <span class="field-suffix">' . _webform_filter_xss($element['#field_suffix']) . '</span>' : '';
-  
+
   // Set up the children a bit differently than the default:
   $wrapper = $element['#type'] == 'checkbox' ? FALSE : TRUE;
   $children .= $wrapper ? "<div class=\"input\">\n" : "";

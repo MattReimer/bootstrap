@@ -1,5 +1,5 @@
 name = Bootstrap
-description = Base front-end theme based on Bootstrap.
+description = "Base front-end theme based on Bootstrap."
 core = 7.x
 engine = phptemplate
 
@@ -8,7 +8,7 @@ engine = phptemplate
 ;
 ; We rely on the default regions, but we can set the main content area up to use
 ; any number of 'sidebars' by adding their names below, their default grid-width
-; to the settings array, and by adding them to the page.tpl.php file. 
+; to the settings array, and by adding them to the page.tpl.php file.
 ;
 ; Expressly redeclare all of the default Drupal regions so that we can add some
 ; of our own (alphabetical by array key):
@@ -44,12 +44,11 @@ stylesheets[all][] = system.menus.css
 stylesheets[all][] = system.theme.css
 stylesheets[all][] = shortcut.css
 ; Module stylesheets we'd like to preemptively avoid:
-stylesheets[all][] = webform.css 
+stylesheets[all][] = webform.css
 
 
 ; Support shortcut module links
 settings[shortcut_module_link] = 1
 
 
-version = "7.x-1.0-alpha1"
 core = "7.x"

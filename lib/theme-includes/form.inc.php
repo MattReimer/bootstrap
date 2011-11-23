@@ -9,7 +9,7 @@
 /**
  * Implements theme_form_element().
  *
- * Specifically, this function attempts to tweak theme_form_element() to bring 
+ * Specifically, this function attempts to tweak theme_form_element() to bring
  * its html minimally into line with Bootstrap's expectations.
  *
  * This implementation makes the following alterations:
@@ -18,7 +18,7 @@
  *      description in the 'before' and 'invisible' cases (around line
  *      67), and immediately before the element in the remaining cases (these
  *      may require additional styling);
- * 
+ *
  * The general approach is to modify this function as minimally as possible so
  * as not to interfere with Webform any more than is necessary. Most of the
  * Bootstrap-ization is accomplished in the main lib/less/*.less files.
@@ -29,7 +29,7 @@
  * @see bootstrap_webform_element()
  * @see theme_form_element()
  * @see theme_webform_element()
- * 
+ *
  * @todo
  *    -- check div.input in 'after', 'none', 'attribute' cases.
  */

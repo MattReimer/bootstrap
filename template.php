@@ -34,6 +34,42 @@ function bootstrap_breadcrumb($variables) {
 
 
 /**
+ * Implements template_preprocess_block().
+ */
+function bootstrap_preprocess_block(&$variables) {
+  // What region are we in:
+  $current_region = $variables['block']->region;
+  // Decide what to do:
+  switch ($current_region) {
+    case 'row_post_content':
+      // Retrieve and make available variables for use in column classes--if there
+      // are any sidebars:
+      $row_region_details = _bootstrap_get_multiple_regions(array('row_'));
+      $row_regions = $row_region_details['row_'];
+      // Count the results:
+      $row_count = count($row_regions);
+      // ROWS
+      //
+      // We're not going to do anything at all if the row count is zero:
+      if ($row_count > 0) {
+        // But if there's at least one, we'll loop through:
+        foreach ($row_regions as $key => $name) {
+          $variable_name = sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, $key);
+          $row_divisions_value = theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN, $key));
+          if ($row_divisions_value == 3) {
+            $variables['classes_array'][] = 'span-one-third';
+          }
+          else {
+            $variables['classes_array'][] = 'span' . $row_divisions_value;
+          }
+        }
+      }
+      break;
+  }
+} // bootstrap_preprocess_block()
+
+
+/**
  * Implements template_preprocess_page().
  *
  * @todo
@@ -42,9 +78,12 @@ function bootstrap_breadcrumb($variables) {
 function bootstrap_preprocess_page(&$variables, $hook) {
   // Retrieve and make available variables for use in column classes--if there
   // are any sidebars:
-  $sidebar_regions = _bootstrap_get_multiple_regions(array('sidebar_', 'row_'));
+  $sidebar_region_details = _bootstrap_get_multiple_regions(array('sidebar_'));
+  $sidebar_regions = $sidebar_region_details['sidebar_'];
   // Count the results:
   $sidebar_count = count($sidebar_regions);
+  // SIDEBARS
+  //
   // Special circumstances may apply if there are exactly two sidebars:
   $equal_columns = ($sidebar_count == 2 && theme_get_setting('bootstrap_one_third'));
   if ($sidebar_count > 0) {
@@ -68,16 +107,24 @@ function bootstrap_preprocess_page(&$variables, $hook) {
         unset($variables['page'][$key]);
       }
     }
-    // We also have to do the same for the content region, but that should be 
+    // We also have to do the same for the content region, but that should be
     // more straightforward as that region MUST exist:
     $remaining_space = BOOTSTRAP_GRID_COLUMNS - $filled_columns;
     $content_width_setting = !$equal_columns ?  theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_COLUMN_VARIABLE_PATTERN, 'content')) : '-one-third';
-    
     $content_width = is_numeric($content_width_setting) && $remaining_space > $content_width_setting ? $remaining_space : $content_width_setting;
-    
     $variables[sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, 'content')] = $content_width;
   }
 } // bootstrap_preprocess_page()
+
+
+/**
+ * Implements template_preprocess_region().
+ */
+function bootstrap_preprocess_region(&$variables) {
+  if (strstr($variables['region'], 'row_') !== FALSE) {
+    $variables['classes_array'][] = 'row';
+  }
+} // bootstrap_preprocess_region()
 
 
 /**

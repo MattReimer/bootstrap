@@ -46,7 +46,7 @@ function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
     'misc/ui/jquery.ui.slider.min.js',
     $path_to_bootstrap . '/lib/js/Drupal.behaviors.bootstrapSettings.js',
   );
-  
+
   $form['bootstrap_layout_settings'] = array(
     '#collapsed' => FALSE,
     '#collapsible' => TRUE,
@@ -93,7 +93,7 @@ function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
         '#maxlength' => 2,
         '#size' => 5,
         '#title' => t('@name width', array('@name' => $name)),
-        '#type' => 'textfield',        
+        '#type' => 'textfield',
       );
     }
   }
@@ -111,21 +111,21 @@ function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
   // As above, if the count of row regions is zero, there's no need for this
   // fieldset:
   if ($row_count > 0) {
-    $form['bootstrap_layout_settings']['bootstrap_row_divisions'] = array(
+    $form['bootstrap_layout_settings']['bootstrap_row_size'] = array(
       '#collapsed' => TRUE,
       '#collapsible' => TRUE,
-      '#title' => t('Bootstrap row divisions'),
+      '#title' => t('Bootstrap row size'),
       '#type' => 'fieldset',
     );
     foreach ($row_regions as $key => $name) {
       $variable_name = sprintf(BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN, $key);
-      $form['bootstrap_layout_settings']['bootstrap_row_divisions'][$variable_name] = array(
+      $form['bootstrap_layout_settings']['bootstrap_row_size'][$variable_name] = array(
         '#default_value' => theme_get_setting($variable_name),
         '#description' => t('How many blocks should be shown horizontally in this row?'),
         '#maxlength' => 2,
         '#size' => 5,
-        '#title' => t('@name divisions', array('@name' => $name)),
-        '#type' => 'textfield',        
+        '#title' => t('@name size', array('@name' => $name)),
+        '#type' => 'textfield',
       );
     }
   }
