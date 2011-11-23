@@ -7,7 +7,7 @@
 
 
 // Include required functions:
-require_once('includes.php');
+require_once('lib/theme-includes/includes.inc.php');
 
 
 /**

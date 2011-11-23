@@ -7,7 +7,7 @@
 
 
 // Include required functions:
-require_once('includes.php');
+require_once('lib/theme-includes/includes.inc.php');
 require_once('lib/theme-includes/form.inc.php');
 require_once('lib/theme-includes/webform.inc.php');
 
@@ -37,7 +37,7 @@ function bootstrap_breadcrumb($variables) {
  * Implements template_preprocess_block().
  */
 function bootstrap_preprocess_block(&$variables) {
-  // What region are we in:
+  // What region are we in?
   $current_region = $variables['block']->region;
   // Decide what to do:
   switch ($current_region) {
@@ -55,12 +55,12 @@ function bootstrap_preprocess_block(&$variables) {
         // But if there's at least one, we'll loop through:
         foreach ($row_regions as $key => $name) {
           $variable_name = sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, $key);
-          $row_divisions_value = theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN, $key));
-          if ($row_divisions_value == 3) {
+          $column_size_value = theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN, $key));
+          if ($column_size_value == 3) {
             $variables['classes_array'][] = 'span-one-third';
           }
           else {
-            $variables['classes_array'][] = 'span' . $row_divisions_value;
+            $variables['classes_array'][] = 'span' . $column_size_value;
           }
         }
       }
@@ -71,9 +71,6 @@ function bootstrap_preprocess_block(&$variables) {
 
 /**
  * Implements template_preprocess_page().
- *
- * @todo
- *    -- review for quality and comment code from approximately 54-79
  */
 function bootstrap_preprocess_page(&$variables, $hook) {
   // Retrieve and make available variables for use in column classes--if there
