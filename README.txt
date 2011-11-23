@@ -28,10 +28,14 @@ Bootstrap's markup and Drupal's are often similar, but can be quite
 different. This theme employs two strategies to overcome this differ-
 ence:
 
-  1.  whenever possible--that is, wherever Bootstrap and Drupal have
+  1.  Remove Drupal (and module) stylesheets where they do more harm
+      than good; in other words, rather than duplicate styles (such as
+      Drupal's menu styles) that are amply handled by Bootstrap, simp-
+      ly use the theme info file to remove them altogether, and
+  2.  whenever possible--that is, wherever Bootstrap and Drupal have
       sufficiently similar markup--"map" Bootstrap styles onto Drupal
       markup using Less [2], or
-  2.  use theming functions or template files to modify Drupal's html
+  3.  use theming functions or template files to modify Drupal's html
       (as minimally as is practical) so that Bootstrap's CSS will work
       directly; in these cases, I have tried to keep the theming
       functions as close as possible to the original functions con-
