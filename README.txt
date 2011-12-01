@@ -1,5 +1,8 @@
 BOOTSTRAP THEME FOR DRUPAL 7
 ----------------------------------------------------------------------
+
+PLEASE CHECKOUT A BRANCH TO CONTINUE
+
 This theme is a basic port of Twitter's "Bootstrap" [1] development
 framework to Drupal 7. It probably can be used as a theme out-of-the-
 box, but is intended to be used as a parent theme. The theme itself is
