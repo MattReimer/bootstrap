@@ -2474,8 +2474,13 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 .admin-menu > .topbar {
   position: static;
 }
-.admin-menu .container {
-  margin-top: 18px;
+body > .container {
+  padding-top: 58px;
+}
+.admin-menu > .container {
+  /* margin-top: @baseline; */
+
+  padding-top: 18px;
 }
 .tabs ul.tabs {
   margin: 0 0 18px;
@@ -2838,9 +2843,3 @@ form div div.form-item.form-type-checkbox {
 .form-checkboxes .form-item + .form-item {
   padding-top: 2px;
 }
-/*
-.form-type-checkbox input {
-  .inputs-list;
-  input[type="checkbox"];
-}
-*/
