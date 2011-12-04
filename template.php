@@ -71,6 +71,10 @@ function bootstrap_preprocess_block(&$variables) {
 
 /**
  * Implements template_preprocess_page().
+ *
+ * @todo
+ *    We should also be checking to see if the sidebar regions are set and
+ *    adjust the $filled_columns variable to suit.
  */
 function bootstrap_preprocess_page(&$variables, $hook) {
   // Retrieve and make available variables for use in column classes--if there
