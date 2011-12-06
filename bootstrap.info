@@ -17,7 +17,7 @@ regions[footer] = Footer
 regions[header] = Header
 regions[help] = Help
 regions[highlighted] = Highlighted Region
-regions[row_post_content] = Post-content Row
+;regions[row_post_content] = Post-content Row
 regions[sidebar_first] = First Sidebar
 regions[sidebar_second] = Second Sidebar
 
