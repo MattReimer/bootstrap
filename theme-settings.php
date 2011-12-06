@@ -72,7 +72,7 @@ function bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
     if ($sidebar_count == 2) {
       $form['bootstrap_layout_settings']['bootstrap_column_sizes']['bootstrap_one_third'] = array(
         '#default_value' => theme_get_setting('bootstrap_one_third'),
-        '#description' => t('If checked, settings below will be ignored and each column will be set to 1/3 the total width.'),
+        '#description' => t('If there are exactly two sidebars, and this box is checked, settings below will be ignored and each column will be set to 1/3 the total width.'),
         '#title' => t('Make columns equal width'),
         '#type' => 'checkbox',
       );
