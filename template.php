@@ -40,31 +40,25 @@ function bootstrap_preprocess_block(&$variables) {
   // What region are we in?
   $current_region = $variables['block']->region;
   // Decide what to do:
-  switch ($current_region) {
-    case 'row_post_content':
-      // Retrieve and make available variables for use in column classes--if there
-      // are any sidebars:
-      $row_region_details = _bootstrap_get_multiple_regions(array('row_'));
-      $row_regions = $row_region_details['row_'];
-      // Count the results:
-      $row_count = count($row_regions);
-      // ROWS
-      //
-      // We're not going to do anything at all if the row count is zero:
-      if ($row_count > 0) {
-        // But if there's at least one, we'll loop through:
-        foreach ($row_regions as $key => $name) {
-          $variable_name = sprintf(BOOTSTRAP_PAGE_TEMPLATE_VARIABLE_PATTERN, $key);
-          $column_size_value = theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN, $key));
-          if ($column_size_value == 3) {
-            $variables['classes_array'][] = 'span-one-third';
-          }
-          else {
-            $variables['classes_array'][] = 'span' . $column_size_value;
-          }
-        }
+  if (strstr($current_region, 'row_') !== FALSE) {
+    // Retrieve and make available variables for use in column classes--if there
+    // are any sidebars:
+    $row_region_details = _bootstrap_get_multiple_regions(array('row_'));
+    $row_regions = $row_region_details['row_'];
+    // Count the results:
+    $row_count = count($row_regions);
+    // ROWS
+    //
+    // We're not going to do anything at all if the row count is zero:
+    if ($row_count > 0) {
+      $column_size_value = theme_get_setting(sprintf(BOOTSTRAP_THEME_SETTINGS_ROW_VARIABLE_PATTERN, $current_region));
+      if ($column_size_value == 3) {
+        $variables['classes_array'][] = 'span-one-third';
       }
-      break;
+      else {
+        $variables['classes_array'][] = 'span' . $column_size_value;
+      }
+    }
   }
 } // bootstrap_preprocess_block()
 
