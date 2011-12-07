@@ -2468,6 +2468,9 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 .block-message a {
   cursor: pointer;
 }
+.block-message {
+  font-size: 16.003px;
+}
 #admin-menu li {
   line-height: 12px;
 }
